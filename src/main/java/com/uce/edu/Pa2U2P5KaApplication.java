@@ -13,6 +13,6 @@ public class Pa2U2P5KaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("\nHOLA MUNDO!\n");
+		System.out.println("\nHOLA MUNDO! 12/12/2023\n");
 	}
 }
