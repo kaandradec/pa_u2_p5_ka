@@ -1,7 +1,6 @@
 package com.uce.edu.repository;
 
 import com.uce.edu.repository.modelo.Alumno;
-import com.uce.edu.repository.modelo.Estudiante;
 
 public interface IAlumnoRepository {
     public Alumno seleccionar(Integer id);

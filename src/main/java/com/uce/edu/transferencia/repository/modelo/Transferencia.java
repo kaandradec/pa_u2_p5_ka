@@ -1,11 +1,9 @@
 package com.uce.edu.transferencia.repository.modelo;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.concurrent.atomic.AtomicLong;
 
 //@Entity
 //@Table(name = "transferencia")

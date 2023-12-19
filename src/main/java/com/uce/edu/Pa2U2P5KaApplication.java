@@ -1,15 +1,9 @@
 package com.uce.edu;
 
-import com.uce.edu.repository.modelo.Alumno;
 import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.repository.modelo.Estudiante;
-import com.uce.edu.service.IAlumnoService;
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.IEmpleadoService;
-import com.uce.edu.service.IEstudianteService;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.hibernate.grammars.hql.HqlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @SpringBootApplication
 public class Pa2U2P5KaApplication implements CommandLineRunner {

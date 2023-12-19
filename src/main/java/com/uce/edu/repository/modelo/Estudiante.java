@@ -1,9 +1,7 @@
 package com.uce.edu.repository.modelo;
 
 import jakarta.persistence.*;
-import org.hibernate.id.factory.internal.AutoGenerationTypeStrategy;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

@@ -2,11 +2,8 @@ package com.uce.edu.service;
 
 import com.uce.edu.repository.IEstudianteRepository;
 import com.uce.edu.repository.modelo.Estudiante;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 @Service
 public class EstudianteServiceImpl implements  IEstudianteService{
     @Autowired

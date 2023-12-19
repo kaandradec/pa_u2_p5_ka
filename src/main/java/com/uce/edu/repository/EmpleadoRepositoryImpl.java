@@ -20,4 +20,15 @@ public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
     public Empleado seleccionar(Integer id) {
         return this.entityManager.find(Empleado.class, id);
     }
+
+    @Override
+    public void actualizar(Empleado empleado) {
+        this.entityManager.merge(empleado);
+    }
+
+    @Override
+    public void eliminar(Integer id) {
+        Empleado empleado = this.seleccionar(id);
+        this.entityManager.remove(empleado);
+    }
 }

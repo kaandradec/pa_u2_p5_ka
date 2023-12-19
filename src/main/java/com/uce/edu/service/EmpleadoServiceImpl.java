@@ -1,6 +1,7 @@
 package com.uce.edu.service;
 
 import com.uce.edu.repository.IEmpleadoRepository;
+import com.uce.edu.repository.modelo.Alumno;
 import com.uce.edu.repository.modelo.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,14 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
     @Override
     public Empleado buscar(Integer id) {
         return this.iEmpleadoRepository.seleccionar(id);
+    }
+    @Override
+    public void actualizar(Empleado empleado) {
+        this.iEmpleadoRepository.actualizar(empleado);
+    }
+
+    @Override
+    public void eliminar(Integer id) {
+        this.iEmpleadoRepository.eliminar(id);
     }
 }
