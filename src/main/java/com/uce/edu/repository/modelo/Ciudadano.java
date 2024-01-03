@@ -14,7 +14,7 @@ public class Ciudadano {
     private String nombre;
     @Column(name = "ciud_apellido")
     private String apellido;
-    @OneToOne(mappedBy = "ciudadano") // empleado va hacer una relacion a
+    @OneToOne(mappedBy = "ciudadano", cascade = CascadeType.ALL) // empleado va hacer una relacion a
     private Empleado empleado;
 
     // SET Y GET
