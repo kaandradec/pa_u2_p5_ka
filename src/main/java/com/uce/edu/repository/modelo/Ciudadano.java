@@ -52,11 +52,11 @@ public class Ciudadano {
 
     @Override
     public String toString() {
-        return "Ciudadano{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", empleado=" + empleado +
-                '}';
+        final StringBuffer sb = new StringBuffer("Ciudadano{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", apellido='").append(apellido).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

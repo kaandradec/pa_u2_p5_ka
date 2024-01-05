@@ -1,7 +1,6 @@
 package com.uce.edu.service;
 
 import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.repository.modelo.Estudiante;
 
 public interface ICiudadanoService {
     public void registrar(Ciudadano ciudadano);
