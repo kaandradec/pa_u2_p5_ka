@@ -54,10 +54,11 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return "Hotel{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}';
+        final StringBuffer sb = new StringBuffer("Hotel{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", direccion='").append(direccion).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
