@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
-//@Entity
-//@Table(name = "autor")
+@Entity
+@Table(name = "autor")
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_autor")
