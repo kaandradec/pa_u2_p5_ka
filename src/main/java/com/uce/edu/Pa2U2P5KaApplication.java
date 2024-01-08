@@ -106,7 +106,7 @@ public class Pa2U2P5KaApplication implements CommandLineRunner {
         // BUSCAR Autor
         Autor aut = this.iAutorService.buscar(1);
         System.out.println(aut);
-        System.out.println("test git");
+        System.out.println("test git 2");
 
     }
 }
