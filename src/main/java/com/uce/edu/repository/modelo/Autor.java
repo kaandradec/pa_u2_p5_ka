@@ -51,4 +51,15 @@ public class Autor {
     public void setLibros(Set<Libro> libros) {
         this.libros = libros;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Autor{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", nacionalidad='").append(nacionalidad).append('\'');
+//        sb.append(", libros=").append(libros);
+        sb.append('}');
+        return sb.toString();
+    }
 }
