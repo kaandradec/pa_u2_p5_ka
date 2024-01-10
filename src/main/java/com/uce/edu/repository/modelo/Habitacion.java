@@ -15,7 +15,7 @@ public class Habitacion {
 
     @Column(name = "habi_clase")
     private String clase;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "habi_id_hotel") // nombre de la columna con la que se va a relacionar FK
     private Hotel hotel;
     // SET Y GET

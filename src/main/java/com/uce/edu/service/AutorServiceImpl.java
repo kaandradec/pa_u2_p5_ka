@@ -2,6 +2,7 @@ package com.uce.edu.service;
 
 import com.uce.edu.repository.IAutorRepository;
 import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Autor2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,11 @@ public class AutorServiceImpl implements IAutorService {
     @Override
     public void registrar(Autor autor) {
         this.iAutorRepository.insertar(autor);
+    }
+
+    @Override
+    public void registrar(Autor2 autor2) {
+        this.iAutorRepository.insertar(autor2);
     }
 
     @Override

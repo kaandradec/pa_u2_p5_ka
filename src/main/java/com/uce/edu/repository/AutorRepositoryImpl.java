@@ -1,6 +1,7 @@
 package com.uce.edu.repository;
 
 import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Autor2;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -19,6 +20,11 @@ public class AutorRepositoryImpl implements IAutorRepository{
     @Override
     public void insertar(Autor autor) {
         this.entityManager.persist(autor);
+    }
+
+    @Override
+    public void insertar(Autor2 autor2) {
+        this.entityManager.persist(autor2);
     }
 
     @Override

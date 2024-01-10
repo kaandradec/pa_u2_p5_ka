@@ -19,7 +19,7 @@ public class Libro2 {
     @Column(name = "libr_fecha_publicacion")
     private LocalDateTime fechaPublicacion;
 
-    @OneToMany(mappedBy = "libro2", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "libro2")
     private List<AutorLibro> autoresLibros;
 
     // SET Y GET
