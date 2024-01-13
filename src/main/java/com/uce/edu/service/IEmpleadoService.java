@@ -1,7 +1,6 @@
 package com.uce.edu.service;
 
 import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.repository.modelo.Estudiante;
 
 public interface IEmpleadoService {
     public void registrar(Empleado empleado);

@@ -1,7 +1,6 @@
 package com.uce.edu.service;
 
 import com.uce.edu.repository.ICiudadanoRepository;
-import com.uce.edu.repository.modelo.Alumno;
 import com.uce.edu.repository.modelo.Ciudadano;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

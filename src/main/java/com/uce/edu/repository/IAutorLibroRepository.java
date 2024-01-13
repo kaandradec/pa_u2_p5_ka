@@ -1,7 +1,5 @@
 package com.uce.edu.repository;
 
-import com.uce.edu.repository.modelo.Autor;
-import com.uce.edu.repository.modelo.Autor2;
 import com.uce.edu.repository.modelo.AutorLibro;
 
 public interface IAutorLibroRepository {

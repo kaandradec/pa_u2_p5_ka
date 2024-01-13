@@ -5,8 +5,13 @@ import com.uce.edu.repository.modelo.Libro2;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+
+import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -47,6 +52,53 @@ public class LibroRepositoryImpl implements ILibroRepository{
 
         Query myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.titulo = :variable");
         myQuery.setParameter("variable", nombre); // JPQL: SELECT l FROM Libro l WHERE l.titulo = :nombre
-        return (Libro) myQuery.getSingleResult(); // en el caso de obtener mas de un resultado tendremos un error
+        //return (Libro) myQuery.getSingleResult(); // en el caso de obtener mas de un resultado tendremos un error
+        return (Libro) myQuery.getResultList().get(0); // Forma 2 de hacerlo, donde no tendremos las excepciones de getSingleResult()
+    }
+
+    @Override
+    public Libro seleccionarPorTitulo(String titulo) {
+        //TYPED QUERY
+        TypedQuery<Libro> myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.titulo = :titulo", Libro.class);
+        myQuery.setParameter("titulo", titulo);
+
+        return myQuery.getSingleResult();
+    }
+
+    @Override
+    public Libro seleccionarPorTituloNamed(String titulo) {
+        TypedQuery<Libro> myQuery = this.entityManager.createNamedQuery("Libro.queryBuscarPorTitulo", Libro.class);
+        myQuery.setParameter("titulo", titulo);
+
+        return myQuery.getResultList().get(0);
+    }
+
+    @Override
+    public List<Libro> seleccionarPorFechaPublicacion(LocalDateTime fechaPublicacion) {
+        // SQL: SELECT * from libro l WHERE l.libr_fecha_publicacion >= ?
+        // JPQL: SELECT l from Libro l WHERE l.fechaPublicacion >= :fecha
+
+        Query myQuery = this.entityManager.createQuery("SELECT l from Libro l WHERE l.fechaPublicacion >= :fecha");
+        myQuery.setParameter("fecha", fechaPublicacion);
+
+        return (List<Libro>) myQuery.getResultList();
+    }
+
+    @Override
+    public List<Libro> seleccionarPorFecha(LocalDateTime fechaPublicacion) {
+        // TYPED QUERY
+        // Usamos Libro en lugar de List<Libro>
+        TypedQuery<Libro> myQuery = this.entityManager.createQuery("SELECT l from Libro l WHERE l.fechaPublicacion >= :fecha", Libro.class);
+        myQuery.setParameter("fecha", fechaPublicacion);
+
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Libro> seleccionarPorFechaNamed(LocalDateTime fechaPublicacion) {
+        TypedQuery<Libro> myQuery = this.entityManager.createNamedQuery("Libro.queryBuscarPorFecha", Libro.class);
+        myQuery.setParameter("fecha", fechaPublicacion);
+
+        return myQuery.getResultList();
     }
 }

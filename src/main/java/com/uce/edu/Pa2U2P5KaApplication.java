@@ -1,104 +1,55 @@
 package com.uce.edu;
 
-import com.uce.edu.repository.IAutorLibroRepository;
-import com.uce.edu.repository.modelo.*;
-import com.uce.edu.service.*;
+import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.ILibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 public class Pa2U2P5KaApplication implements CommandLineRunner {
-    @Autowired
-    private IHotelService iHotelService;
-    @Autowired
-    private IHabitacionService iHabitacionService;
+    // 1. Query (JPQL) - Usar cuando no sabemos con que tipo de datos trabajamos
+    //  1.1 TypedQuery - Recomentado usar
+    //  1.2 NamedQuery - Cuando requerimos usar el mismo query desde distintos sitios
+
+    // 2. Native Query
+    // 3. Criteria API Query
 
     @Autowired
     private ILibroService iLibroService;
 
-    @Autowired
-    private  IAutorService iAutorService;
-
-    @Autowired
-    private IAutorLibroService iAutorLibroService;
     public static void main(String[] args) {
         SpringApplication.run(Pa2U2P5KaApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println(">>> QUERY");
+        List<Libro> lista = this.iLibroService.buscarPorFecha(LocalDateTime.of(2023,1,1,7,15));
+        System.out.println(">>Lista Query");
+        lista.forEach(System.out::println);
 
-//        System.out.println("\n>>>OPERACIONES CRUD Hotel, Habitacion - Relación OneToMany");
-        // Insertar en cascada desde libro
-//        Hotel hotel = new Hotel();
-//        hotel.setDireccion("Colon");
-//        hotel.setNombre("Marriot");
-//
-//        Habitacion habitacion = new Habitacion();
-//        habitacion.setNumero("A1");
-//        habitacion.setClase("economica");
-//        habitacion.setHotel(hotel);
-//
-//        Habitacion habitacion2 = new Habitacion();
-//        habitacion2.setNumero("A2");
-//        habitacion2.setClase("presidencial");
-//        habitacion2.setHotel(hotel);
-//
-//        hotel.setHabitaciones(List.of(habitacion, habitacion2));
-//
-//        // GUARDAR hotel con 2 habitaciones - CASCADA
-//        this.iHotelService.guardar(hotel);
+        System.out.println("\nTypedQuery");
+        Libro li1 = this.iLibroService.buscarPorTitulo("Programacion web");
+        System.out.println(li1);
 
-//        // Insertar en cascada desde Autor
-//
-//        Libro2 libro = new Libro2();
-//        libro.setTitulo("Arquitectura de Software");
-//        libro.setFechaPublicacion(LocalDateTime.now());
-//
-//        Autor2 autor = new Autor2();
-//        autor.setNombre("Miguel Angel");
-//        autor.setNacionalidad("España");
-//
-//        AutorLibro autorLibro = new AutorLibro();
-//        autorLibro.setFecha(LocalDateTime.now());
-//        autorLibro.setAutor2(autor);
-//        autorLibro.setLibro2(libro);
-//
-//        List<AutorLibro> lista = new ArrayList<>();
-//        lista.add(autorLibro);
-//
-//        autor.setAutoresLibros(lista);
-//
-//        this.iAutorService.registrar(autor);
+        List<Libro> lista2 = this.iLibroService.buscarPorFechaPubli(LocalDateTime.of(2023,1,1,7,15));
 
-        // Insertar en cascada desde AutorLibro
-        Autor2 autorA = new Autor2();
-        autorA.setNombre("Mateo Castro");
-        autorA.setNacionalidad("Cubano");
+        System.out.println(">>Lista TypedQuery");
+        lista2.forEach(System.out::println);
 
-        Libro2 libroA = new Libro2();
-        libroA.setTitulo("CSS");
-        libroA.setFechaPublicacion(LocalDateTime.now());
+        System.out.println("\n>>> NamedQuery");
+        Libro li2 = this.iLibroService.buscarPorTituloNamed("Postgres");
+        System.out.println(li2);
 
-        AutorLibro autorLibroA = new AutorLibro();
-        autorLibroA.setCodigo("AL123");
-        autorLibroA.setFecha(LocalDateTime.of(LocalDate.of(1900, 02, 12), LocalTime.now()));
-        autorLibroA.setAutor2(autorA);
-        autorLibroA.setLibro2(libroA);
+        List<Libro> lista3 = this.iLibroService.buscarPorFechaPubliNamed(LocalDateTime.of(2023,1,1,7,15));
 
-//        this.iAutorLibroService.guardar(autorLibroA);
-
-//        this.iAutorLibroService.actualizarRegistro("AL123", LocalDateTime.now() );
-
+        System.out.println(">>Lista QueryNamed");
+        lista3.forEach(System.out::println);
 
     }
 }

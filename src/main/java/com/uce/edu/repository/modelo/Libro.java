@@ -7,6 +7,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "libro")
+@NamedQuery(name = "Libro.queryBuscarPorTitulo", query = "SELECT l FROM Libro l WHERE l.titulo = :titulo")
+// name es dado por NombreDeEntidad.NombreDistintivo
+@NamedQuery(name = "Libro.queryBuscarPorFecha", query = "SELECT l from Libro l WHERE l.fechaPublicacion > :fecha")
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_libro")
