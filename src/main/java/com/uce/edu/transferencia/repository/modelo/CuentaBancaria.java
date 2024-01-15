@@ -1,7 +1,6 @@
 package com.uce.edu.transferencia.repository.modelo;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
