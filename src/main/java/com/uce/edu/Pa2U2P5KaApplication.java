@@ -55,5 +55,7 @@ public class Pa2U2P5KaApplication implements CommandLineRunner {
 //        Empleado empBuscado = this.iEmpleadoService.buscar(1);
 //        System.out.println(empBuscado);
 
+        System.out.println("Hola");
+
     }
 }
