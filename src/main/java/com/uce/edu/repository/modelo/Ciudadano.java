@@ -10,6 +10,8 @@ public class Ciudadano {
     @SequenceGenerator(name = "seq_ciudadano", sequenceName = "seq_ciudadano", allocationSize = 1)
     @Column(name = "ciud_id")
     private Integer id;
+    @Column(name = "ciud_cedula")
+    private String cedula;
     @Column(name = "ciud_nombre")
     private String nombre;
     @Column(name = "ciud_apellido")
@@ -50,13 +52,21 @@ public class Ciudadano {
         this.empleado = empleado;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     @Override
     public String toString() {
         return "Ciudadano{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", empleado=" + empleado +
+//                ", empleado=" + empleado +
                 '}';
     }
 }

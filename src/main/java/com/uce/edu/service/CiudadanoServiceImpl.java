@@ -2,6 +2,7 @@ package com.uce.edu.service;
 
 import com.uce.edu.repository.ICiudadanoRepository;
 import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,15 @@ public class CiudadanoServiceImpl implements ICiudadanoService{
     @Override
     public void eliminar(Integer id) {
         this.iCiudadanoRepository.eliminar(id);
+    }
+
+    @Override
+    public Empleado buscarPorCedula(String cedula) {
+        return this.iCiudadanoRepository.seleccionarPorCedula(cedula);
+    }
+
+    @Override
+    public Ciudadano buscarPorCedulaCiu(String cedula) {
+        return this.iCiudadanoRepository.seleccionarPorCedulaCiu(cedula);
     }
 }

@@ -60,7 +60,7 @@ public class Empleado {
                 "id=" + id +
                 ", salario=" + salario +
                 ", fechaIngreso=" + fechaIngreso +
-                ", ciudadano=" + ciudadano +
+//                ", ciudadano=" + ciudadano +
                 '}';
     }
 }

@@ -1,6 +1,9 @@
 package com.uce.edu;
 
+import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
 import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.ILibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,11 +19,13 @@ public class Pa2U2P5KaApplication implements CommandLineRunner {
     //  1.1 TypedQuery - Recomentado usar
     //  1.2 NamedQuery - Cuando requerimos usar el mismo query desde distintos sitios
 
-    // 2. Native Query
+    // 2. Native Query (SQL puro) - Se usa cuando las consultas son muy complejas, se ahorra en recursos
+    // al transformar de JPQL a SQL.
+    //  2.1
     // 3. Criteria API Query
 
     @Autowired
-    private ILibroService iLibroService;
+    private ICiudadanoService iCiudadanoService;
 
     public static void main(String[] args) {
         SpringApplication.run(Pa2U2P5KaApplication.class, args);
@@ -28,28 +33,12 @@ public class Pa2U2P5KaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(">>> QUERY");
-        List<Libro> lista = this.iLibroService.buscarPorFecha(LocalDateTime.of(2023,1,1,7,15));
-        System.out.println(">>Lista Query");
-        lista.forEach(System.out::println);
+        Empleado empleado = this.iCiudadanoService.buscarPorCedula("181818");
+        System.out.println("\n>>>JPQL: " + empleado);
 
-        System.out.println("\nTypedQuery");
-        Libro li1 = this.iLibroService.buscarPorTitulo("Programacion web");
-        System.out.println(li1);
+        Ciudadano ciudadano = this.iCiudadanoService.buscarPorCedulaCiu("191919");
+        System.out.println("\n>>>Native Query: " + ciudadano);
 
-        List<Libro> lista2 = this.iLibroService.buscarPorFechaPubli(LocalDateTime.of(2023,1,1,7,15));
-
-        System.out.println(">>Lista TypedQuery");
-        lista2.forEach(System.out::println);
-
-        System.out.println("\n>>> NamedQuery");
-        Libro li2 = this.iLibroService.buscarPorTituloNamed("Postgres");
-        System.out.println(li2);
-
-        List<Libro> lista3 = this.iLibroService.buscarPorFechaPubliNamed(LocalDateTime.of(2023,1,1,7,15));
-
-        System.out.println(">>Lista QueryNamed");
-        lista3.forEach(System.out::println);
 
     }
 }
