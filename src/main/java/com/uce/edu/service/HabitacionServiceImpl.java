@@ -5,6 +5,8 @@ import com.uce.edu.repository.modelo.Habitacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HabitacionServiceImpl implements IHabitacionService{
     @Autowired
@@ -26,5 +28,10 @@ public class HabitacionServiceImpl implements IHabitacionService{
     @Override
     public void eliminar(Integer id) {
         this.iHabitacionRepository.eliminar(id);
+    }
+
+    @Override
+    public List<Habitacion> buscarPorClase(String clase) {
+        return this.iHabitacionRepository.seleccionarPorClase(clase);
     }
 }
