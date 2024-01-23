@@ -13,6 +13,8 @@ public class Mascota {
 
     @Column(name = "nombre")
     private String nombre;
+    @Column(name = "telefono_placa")
+    private String telefonoPlaca;
 
     @Column(name = "tipo")
     private String tipo;

@@ -9,12 +9,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class Pa2U2P5KaApplication implements CommandLineRunner {
 
     @Autowired
-    private ICiudadanoService iCiudadanoService;
+    private IMascotaService iMascotaService;
 
     public static void main(String[] args) {
         SpringApplication.run(Pa2U2P5KaApplication.class, args);
@@ -22,35 +23,40 @@ public class Pa2U2P5KaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // 3. CRITERIA API QUERY
-        Ciudadano ciu = this.iCiudadanoService.buscarPorApellido("Castro");
-        System.out.println(ciu);
+        // Hibernate: select m1_0.id_mascota,m1_0.color,m1_0.edad,m1_0.nombre,m1_0.peso,m1_0.telefono_placa,m1_0.tipo from mascota m1_0 where m1_0.telefono_placa=?
+        System.out.println("\n>> Seleccionar Mascota 'Oreo' por telefonoPlaca");
+        Mascota m1 = this.iMascotaService.buscarPorCriteriaTelefonoPlacaORNombre("0992222222", "Oreo");
+        System.out.println(m1);
 
-        // >>> Citeria API Q Dinámico
-        System.out.println("\n>>>Criteria Dinámico");
+        // Hibernate: select m1_0.id_mascota,m1_0.color,m1_0.edad,m1_0.nombre,m1_0.peso,m1_0.telefono_placa,m1_0.tipo from mascota m1_0 where m1_0.nombre=?
+        System.out.println(">> Seleccionar Mascota 'Oreo' por nombre");
+        Mascota m2 = this.iMascotaService.buscarPorCriteriaTelefonoPlacaORNombre("", "Oreo");
+        System.out.println(m2);
 
-        // Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=?
-        Ciudadano ciu1 = this.iCiudadanoService.buscarPorCriteria("Jorge", "Castro", "171717");
-        System.out.println(ciu1);
+        // Hibernate: select m1_0.id_mascota,m1_0.color,m1_0.edad,m1_0.nombre,m1_0.peso,m1_0.telefono_placa,m1_0.tipo from mascota m1_0 where m1_0.tipo=? and m1_0.color=?
+        System.out.println("\n>> Listar Mascotas por tipo y color");
+        List<Mascota> l1 = this.iMascotaService.listarPorCriteriaTipoAndColor("Gato", "Naranja");
+        l1.forEach(System.out::println);
 
-        // Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_apellido=?
-        Ciudadano ciu2 = this.iCiudadanoService.buscarPorCriteria("Carla", "Bolañoz", "0523456781");
-        System.out.println(ciu2);
-        // Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_cedula=?
-        Ciudadano ciu3 = this.iCiudadanoService.buscarPorCriteria("Marco", "Parra", "212121");
-        System.out.println(ciu3);
+        // Hibernate: select m1_0.id_mascota,m1_0.color,m1_0.edad,m1_0.nombre,m1_0.peso,m1_0.telefono_placa,m1_0.tipo from mascota m1_0 where m1_0.edad=? or m1_0.peso=?
+        System.out.println("\n>> Listar Mascotas por edad o peso");
+        List<Mascota> l2 = this.iMascotaService.listarPorCriteriaEdadORPeso(3, 4.0);
+        l2.forEach(System.out::println);
 
-        // >>> Criteria AND OR
-        System.out.println("\n>>>Criteria AND OR");
-        // OR
-        // Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=? or c1_0.ciud_apellido=?
-        Ciudadano ciu4 = this.iCiudadanoService.buscarPorCriteriaAndOr("Jorge", "Castro11111", "171717");
-        System.out.println(ciu4);
-        // AND
-        // Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from ciudadano c1_0 where c1_0.ciud_nombre=? and c1_0.ciud_apellido=?
-        Ciudadano ciu5 = this.iCiudadanoService.buscarPorCriteriaAndOr("Carla", "Bolañoz", "0523456781");
-        System.out.println(ciu5);
+        // Hibernate: select m1_0.id_mascota,m1_0.color,m1_0.edad,m1_0.nombre,m1_0.peso,m1_0.telefono_placa,m1_0.tipo from mascota m1_0 where m1_0.edad<=?
+        System.out.println("\n>> Listar Mascotas por edad: perro-> lessThanOrEqualTo");
+        List<Mascota> l3 = this.iMascotaService.listarPorCriteriaTipoEdad("Perro", 4);
+        l3.forEach(System.out::println);
 
+        // Hibernate: select m1_0.id_mascota,m1_0.color,m1_0.edad,m1_0.nombre,m1_0.peso,m1_0.telefono_placa,m1_0.tipo from mascota m1_0 where m1_0.edad>=?
+        System.out.println(">> Listar Mascotas por edad: gato-> greaterThanOrEqualTo");
+        List<Mascota> l4 = this.iMascotaService.listarPorCriteriaTipoEdad("Gato", 4);
+        l4.forEach(System.out::println);
+
+        // Hibernate: select count(m1_0.id_mascota) from mascota m1_0 where m1_0.peso between ? and ?
+        System.out.println("\n>> Numero de mascotas con peso en rango");
+        Integer numeroMascotasEnRangoDePeso = this.iMascotaService.contarPorCriteriaBetweenPeso(5.0, 8.0);
+        System.out.println("Numero de mascotas con peso entre 5L y 8L: " + numeroMascotasEnRangoDePeso);
 
     }
 }
