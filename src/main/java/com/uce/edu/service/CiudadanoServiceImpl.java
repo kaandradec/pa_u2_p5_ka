@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CiudadanoServiceImpl implements ICiudadanoService{
+public class CiudadanoServiceImpl implements ICiudadanoService {
     @Autowired
     private ICiudadanoRepository iCiudadanoRepository;
+
     @Override
     public void registrar(Ciudadano ciudadano) {
         this.iCiudadanoRepository.insertar(ciudadano);
@@ -19,6 +20,7 @@ public class CiudadanoServiceImpl implements ICiudadanoService{
     public Ciudadano buscar(Integer id) {
         return this.iCiudadanoRepository.seleccionar(id);
     }
+
     @Override
     public void actualizar(Ciudadano ciudadano) {
         this.iCiudadanoRepository.actualizar(ciudadano);
@@ -37,5 +39,20 @@ public class CiudadanoServiceImpl implements ICiudadanoService{
     @Override
     public Ciudadano buscarPorCedulaCiu(String cedula) {
         return this.iCiudadanoRepository.seleccionarPorCedulaCiu(cedula);
+    }
+
+    @Override
+    public Ciudadano buscarPorApellido(String apellido) {
+        return this.iCiudadanoRepository.seleccionarPorApellido(apellido);
+    }
+
+    @Override
+    public Ciudadano buscarPorCriteria(String nombre, String apellido, String cedula) {
+        return this.iCiudadanoRepository.seleccionarPorCriteria(nombre, apellido, cedula);
+    }
+
+    @Override
+    public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula) {
+        return this.iCiudadanoRepository.seleccionarPorCriteriaAndOr(nombre, apellido, cedula);
     }
 }
